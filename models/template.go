@@ -45,20 +45,7 @@ type HtmlTemplate struct {
 func (t *TemplateBlog) WriteData(w io.Writer, data interface{}) {
 	err := t.Execute(w, data)
 	if err != nil {
-		_, err := w.Write([]byte(err.Error()))
-		if err != nil {
-			log.Println(err)
-			return
-		}
-	}
-}
-
-func (t *TemplateBlog) WriteError(w io.Writer, err error) {
-	if err != nil {
-		_, err := w.Write([]byte(err.Error()))
-		if err != nil {
-			log.Println(err)
-		}
+		w.Write([]byte("error"))
 	}
 }
 
