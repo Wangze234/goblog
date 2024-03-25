@@ -50,13 +50,17 @@ func (t *TemplateBlog) WriteData(w io.Writer, data interface{}) {
 }
 
 // 入参 模板路径
-func InitTemplate(templateDir string) HtmlTemplate {
+func InitTemplate(templateDir string) (HtmlTemplate, error) {
 	//期望读取路径后的返回
-	tp := readTemplate(
+	tp, err := readTemplate(
 		[]string{"index", "category", "custom", "detail", "login", "pigeonhole", "writing"},
 		templateDir,
 	)
 	var htmlTemplate HtmlTemplate
+	if err != nil {
+		return htmlTemplate, err
+	}
+
 	htmlTemplate.Index = tp[0]
 	htmlTemplate.Category = tp[1]
 	htmlTemplate.Custom = tp[2]
@@ -64,11 +68,11 @@ func InitTemplate(templateDir string) HtmlTemplate {
 	htmlTemplate.Login = tp[4]
 	htmlTemplate.Pigenhole = tp[5]
 	htmlTemplate.Writing = tp[6]
-	return htmlTemplate
+	return htmlTemplate, nil
 }
 
 // 入参 模板的组合 希望返回TemplateBlog类型的数组
-func readTemplate(templates []string, templateDir string) []TemplateBlog {
+func readTemplate(templates []string, templateDir string) ([]TemplateBlog, error) {
 	var tbs []TemplateBlog
 	//templates是拿到的页面名称
 	//templateDir是当前html页面所在路径
@@ -88,10 +92,11 @@ func readTemplate(templates []string, templateDir string) []TemplateBlog {
 		t, err := t.ParseFiles(templateDir+viewName, home, header, footer, personal, post, pagination)
 		if err != nil {
 			log.Println(err)
+			return nil, err
 		}
 		var tb TemplateBlog
 		tb.Template = t
 		tbs = append(tbs, tb)
 	}
-	return tbs
+	return tbs, nil
 }

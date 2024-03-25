@@ -14,6 +14,7 @@ type IndexData struct {
 
 func (*HTMLApi) Index(w http.ResponseWriter, r *http.Request) {
 	// 页面上涉及到的数据必须有定义
+	// 数据库查询
 	var categorys = []models.Category{
 		{
 			Cid:  1,
