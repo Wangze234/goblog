@@ -1,9 +1,10 @@
 package views
 
 import (
+	"errors"
+	"log"
 	"my-project/common"
-	"my-project/config"
-	"my-project/models"
+	"my-project/service"
 	"net/http"
 )
 
@@ -14,38 +15,15 @@ type IndexData struct {
 
 func (*HTMLApi) Index(w http.ResponseWriter, r *http.Request) {
 	// 页面上涉及到的数据必须有定义
-	// 数据库查询
-	var categorys = []models.Category{
-		{
-			Cid:  1,
-			Name: "go",
-		},
-	}
-	var posts = []models.PostMore{
-		{
-			Pid:          1,
-			Title:        "go博客",
-			Content:      "内容",
-			UserName:     "码神",
-			ViewCount:    123,
-			CreateAt:     "2022-02-20",
-			CategoryId:   1,
-			CategoryName: "go",
-			Type:         0,
-		},
-	}
-	// 执行模板
-	var hr = &models.HomeResoponse{
-		config.Cfg.Viewer,
-		categorys,
-		posts,
-		1,
-		1,
-		[]int{1},
-		true,
-	}
 	//获取index模板
 	index := common.Template.Index
+	// 数据库查询
+	hr, err := service.GetAllIndexInfo()
+	if err != nil {
+		log.Println("Index获取数据出错", err)
+		index.WriteError(w, errors.New("系统错误， 请联系管理员！"))
+	}
+
 	//向index模板传值
 	index.WriteData(w, hr)
 }
