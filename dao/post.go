@@ -37,3 +37,10 @@ func GetPostpage(page, pageSize int) ([]models.Post, error) {
 	return posts, nil
 
 }
+
+// 获取页码数
+func CountGetAllPost() (count int) {
+	rows := DB.QueryRow("select count(1) from blog_post;")
+	_ = rows.Scan(&count)
+	return
+}

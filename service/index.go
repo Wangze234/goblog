@@ -41,16 +41,23 @@ func GetAllIndexInfo(page, pageSize int) (*models.HomeResoponse, error) {
 		}
 		postMores = append(postMores, postMore)
 	}
-
+	//获取文章总数
+	total := dao.CountGetAllPost()
+	pagesCount := (total-1)/10 + 1
+	var pages []int
+	// 将页码存储在数组中
+	for i := 0; i < pagesCount; i++ {
+		pages = append(pages, i+1)
+	}
 	// 执行模板
 	var hr = &models.HomeResoponse{
 		config.Cfg.Viewer,
 		categorys,
 		postMores,
-		1,
-		1,
-		[]int{1},
-		true,
+		total,
+		page,
+		pages,
+		page != pagesCount,
 	}
 	return hr, nil
 }
