@@ -12,7 +12,8 @@ func Router() {
 	http.HandleFunc("/", views.HTML.Index)
 	//api接口 数据
 	http.HandleFunc("/post", api.API.SaveUpdatePost)
-
+	// 分类页匹配cid
+	http.HandleFunc("/c/", views.HTML.Category)
 	//映射resource 静态资源的路径
 	http.Handle("/resource/", http.StripPrefix("/resource/", http.FileServer(http.Dir("public/resource/"))))
 
