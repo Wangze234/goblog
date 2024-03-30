@@ -86,3 +86,30 @@ func CountGetAllPostByCategoryId(cId int) (count int) {
 	_ = rows.Scan(&count)
 	return
 }
+
+// 获取文章详情
+func GetPostById(pid int) (models.Post, error) {
+	rows := DB.QueryRow("select * from blog_post where pid = ?;", pid)
+	var post models.Post
+	if rows.Err() != nil {
+		return post, rows.Err()
+	}
+
+	err := rows.Scan(
+		&post.Pid,
+		&post.Title,
+		&post.Content,
+		&post.Markdown,
+		&post.CategoryId,
+		&post.UserId,
+		&post.ViewCount,
+		&post.Type,
+		&post.Slug,
+		&post.CreateAt,
+		&post.UpdateAt,
+	)
+	if err != nil {
+		return post, err
+	}
+	return post, nil
+}

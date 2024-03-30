@@ -18,6 +18,8 @@ func Router() {
 	http.HandleFunc("/login", views.HTML.Login)
 	//登录接口
 	http.HandleFunc("/api/v1/login", api.API.Login)
+	// 文章详情页，类似分页匹配cid
+	http.HandleFunc("/p/", views.HTML.Detail)
 	//映射resource 静态资源的路径
 	http.Handle("/resource/", http.StripPrefix("/resource/", http.FileServer(http.Dir("public/resource/"))))
 

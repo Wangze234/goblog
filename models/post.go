@@ -51,8 +51,12 @@ type SearchResp struct {
 	Title string `orm:"title" json:"title"`
 }
 
+// 数据库返回数据要求
 type PostRes struct {
+	//页面固定属性
 	config.Viewer
+	// 评论 分页 属性
 	config.SystemConfig
+	// 文章属性
 	Article PostMore
 }
