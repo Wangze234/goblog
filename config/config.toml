@@ -6,13 +6,13 @@
     Bilibili = "https://space.bilibili.com/473844125"
     Zhihu = "https://www.zhihu.com/people/ma-shen-zhi-lu"
     Avatar = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F13147603927%2F1000.jpg&refer=http%3A%2F%2Finews.gtimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1647242040&t=c6108010ed46b4acebe18955acdd2d24"
-    UserName = "我是QA"
+    UserName = "我是RD"
     UserDesc = "长得非常帅的程序员"
 [system]
     CdnURL = "https://static.mszlu.com/goblog/es6/md-assets"
     QiniuAccessKey = "替换自己的"
     QiniuSecretKey = "替换自己的"
     Valine = true
-    ValineAppid = "替换自己的"
-    ValineAppkey = "替换自己的"
-    ValineServerURL = "替换自己的"
+    ValineAppid = "IG245gpvdBHugfGttXY9jeie-gzGzoHsz"
+    ValineAppkey = "zYTe7EQ4iRpefaGYsWQVhirz"
+    ValineServerURL = "https://ig245gpv.lc-cn-n1-shared.com"
