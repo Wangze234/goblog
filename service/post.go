@@ -2,6 +2,7 @@ package service
 
 import (
 	"html/template"
+	"log"
 	"my-project/config"
 	"my-project/dao"
 	"my-project/models"
@@ -35,4 +36,16 @@ func GetPostDetail(pid int) (*models.PostRes, error) {
 		postMore,
 	}
 	return postRes, nil
+}
+
+func Writing() (wr models.WritingRes) {
+	wr.Title = config.Cfg.Viewer.Title
+	wr.CdnURL = config.Cfg.System.CdnURL
+	category, err := dao.GetAllCategory()
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	wr.Catrgorys = category
+	return
 }

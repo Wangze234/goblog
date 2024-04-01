@@ -60,3 +60,10 @@ type PostRes struct {
 	// 文章属性
 	Article PostMore
 }
+
+// 写作需要返回值
+type WritingRes struct {
+	Title     string
+	CdnURL    string
+	Catrgorys []Category
+}
