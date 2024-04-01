@@ -10,8 +10,8 @@ func Router() {
 	// 路由分三类 1.页面  2.api 数据（json） 3.静态资源
 	//页面
 	http.HandleFunc("/", views.HTML.Index)
-	//api接口 数据
-	http.HandleFunc("/post", api.API.SaveUpdatePost)
+	//发布文章
+	http.HandleFunc("/api/v1/post", api.API.SaveUpdatePost)
 	// 分类页匹配cid
 	http.HandleFunc("/c/", views.HTML.Category)
 	// 登录页面
